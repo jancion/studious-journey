@@ -7,6 +7,15 @@ Calender Program
 '''
 
 def calculate(year, month, day):
+    '''
+    Used to determine what day of the week the first day of the month is.
+    outputs the number code for the day.
+    :param year: The year which is set to Y
+    :param month: The month which is set to m
+    :param day: The day which is set to q
+    :return: h the number code for the day of the week
+    '''
+    # Used to determine what day the month starts on.
     Y = int(year)
     q = int(day)
     m = int(month)
@@ -17,9 +26,17 @@ def calculate(year, month, day):
     return h
 
 def is_leap(year):
+    '''
+    "A year will be a leap year if it is divisible by 4 but not by 100.
+     If a year is divisible by 4 and by 100,
+     it is not a leap year unless it is also divisible by 400." - Wikipedia
+     Using that formula this will output True or False depending on whether or not its a leap year.
+    :param year: Year to be tested
+    :return: true or false
+    '''
+
     year = int(year)
     '''
-    A year will be a leap year if it is divisible by 4 but not by 100. If a year is divisible by 4 and by 100, it is not a leap year unless it is also divisible by 400.
     '''
     if (year % 4 == 0) and (year % 100 != 0):
         return True
@@ -28,8 +45,15 @@ def is_leap(year):
     else:
         return False
 
-def build_caldener(year, month):
+def build_calendar():
+    '''
 
+    :param year: Year to be printed
+    :param month: Month to be printed
+    :return: a formatted callender with 0 extra whitespace
+    '''
+    date_input = input()  # Asking for user unput
+    month, year = date_input.split(' ')  # splitting
     month_list = {
         '1' : ['January', 32],
         '2' : ['February', 29],
@@ -86,7 +110,6 @@ def build_caldener(year, month):
         row3_5 += i
 
         if (len(row3_5)== 21) or (len(row3_5)== 42 or len(row3_5)== 63) or (len(row3_5)== 84) or (len(row3_5)== 105):
-            #if row3_5[:-1] == ' ':
             row3_5 = row3_5[:-1]
             row3_5 += '\n'
 
@@ -99,8 +122,7 @@ def build_caldener(year, month):
     print(row1)
     print(row2)
     print(row3_5, end="")
+# 1  2  3  4  5  6  7\n  8   9 10 11 12 etc
 
-date_input = input()
-date_input = date_input.split(' ')
 
-build_caldener(date_input[1], date_input[0])
+build_calendar()
