@@ -48,6 +48,7 @@ def daysInMonth(month, year):
     >>> daysInMonth(2, 2000)
     29
     '''
+    global month_list
     month = str(month)
     month_list = {
         '1': ['January', 31],
@@ -84,19 +85,24 @@ def monthCalendarFor(month, year):
 
     >>> monthCalendarFor(7, 1991)
     '     July 1991\\nSu Mo Tu We Th Fr Sa\\n    1  2  3  4  5  6\\n 7  8  9 10 11 12 13\\n14 15 16 17 18 19 20\\n21 22 23 24 25 26 27\\n28 29 30 31\\n\\n'
+    >>> monthCalendarFor(2, 1981)
+    '   February 1981\\nSu Mo Tu We Th Fr Sa\\n 1  2  3  4  5  6  7\\n 8  9 10 11 12 13 14\\n15 16 17 18 19 20 21\\n22 23 24 25 26 27 28\\n\\n\\n'
     '''
-    months = {1: 'January',
-                 2: 'February',
-                 3: 'March',
-                 4: 'April',
-                 5: 'May',
-                 6: 'June',
-                 7: 'July',
-                 8: 'August',
-                 9: 'September',
-                 10: 'October',
-                 11: 'November',
-                 12: 'December'}
+
+
+    months = {
+        1: 'January',
+        2: 'February',
+        3: 'March',
+        4: 'April',
+        5: 'May',
+        6: 'June',
+        7: 'July',
+        8: 'August',
+        9: 'September',
+        10: 'October',
+        11: 'November',
+        12: 'December'}
 
     row1 = months[month]
     row1 = str(row1) + ' ' + str(year)
@@ -109,14 +115,14 @@ def monthCalendarFor(month, year):
 
     count = 0
 
-    for i in range(1, daysInMonth(month, year)):
+    for i in range(1, daysInMonth(month, year) + 1):
         if len(str(i)) == 1:
             i = str(i) + ' '
         row_days += str(i) + ' '
         if (len(row_days) == 27) and (count == 0):
             row_days = row_days[:-1]
 
-    if rowstart == 0:
+    if rowstart == 7:
         row3_5 = '                   '
     elif rowstart == 1:
         row3_5 = ' '
@@ -138,8 +144,10 @@ def monthCalendarFor(month, year):
             row3_5 = row3_5[:-1]
             row3_5 += '\n'
 
-    if rowstart == 0:
+    if rowstart == 7:
         row3_5 = row3_5[:-1] + '\n'
+    elif (month == 2) and ('29' not in row_days):
+        row3_5 = row3_5[:-1] + '\n\n\n'
     else:
         row3_5 = row3_5[:-1] + '\n\n'
     output = row1 + row2 + row3_5
@@ -149,6 +157,4 @@ def monthCalendarFor(month, year):
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
-    print(daysInMonth(2, 2000))
-    print(daysInMonth(2, 1900))
-    print(monthCalendarFor(2, 2000))
+
