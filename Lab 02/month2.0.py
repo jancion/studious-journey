@@ -157,4 +157,4 @@ def monthCalendarFor(month, year):
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
-
+    print(monthCalendarFor(12, 1900), end='')

@@ -20,7 +20,7 @@ def isStrictlyIncreasing(value_list):
                 temp_list.append(i)
     return temp_list
 
-values = [1, 4, 2, 5, 6, 7, 8, ]
+values = [1, 4, 2, 5, 6, 7, 8, 9]
 
 
 print(isStrictlyIncreasing(values))
