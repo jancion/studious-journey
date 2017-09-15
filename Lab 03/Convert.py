@@ -7,6 +7,7 @@ Lab 03 - Convert!
 '''
 
 def wordsFromNumber(num):
+    string_return = ''
     sect_one = {
         1: 'one',
         2: 'two',
@@ -19,6 +20,17 @@ def wordsFromNumber(num):
         9: 'nine',
         0: 'zero'
     }
+    sect_one_two = {
+        1 : 'eleven',
+        2 : 'twelve',
+        3 : 'thirteen',
+        4 : 'fourteen',
+        5 : 'fifteen',
+        6 : 'sixteen',
+        7 : 'seventeen',
+        8 : 'eighteen',
+        9 : 'nineteen'
+    }
     sect_two = {
         10: 'ten',
         20: 'twenty',
@@ -29,45 +41,30 @@ def wordsFromNumber(num):
         70: 'seventy',
         80: 'eighty',
         90: 'ninety',
+        100: 'hundred',
+
     }
     sect_three = {
-        3: 'hundred',
-        4: 'thousand',
-        7: 'million',
-        10: 'billion',
-        13: 'trillion',
-        16: 'quadrillion',
-        19: 'quintillion'
+        1: 'hundred',
+        2: 'thousand',
+        3: 'million',
+        4: 'billion',
+        5: 'trillion',
+        6: 'quadrillion',
+        7: 'quintillion'
     }
 
-    string = ''
-    string_list = []
-    num_str = str(num)
+    num_list = []
+    print(num_list)
+    for i in map(int, [num]):
+        num_list += format(i, ',').split(',')
 
-    for i in num_str:
-        string_list.append(i)
+    print(num_list)
 
-    print(len(num_str))
-    if len(num_str) <= 3:
-        string = sect_one[sect_one[num]]
-    if len(num_str) <= 4:
-        pass
-    if len(num_str) <= 7:
-        pass
-    if len(num_str) <= 10:
-        pass
-    if len(num_str) <= 13:
-        pass
-    if len(num_str) <= 16:
-        pass
-    if len(num_str) <= 19:
-        pass
-
-    print(string)
+    for i in num_list:
+        print(num_list.index(i))
 
 
 
 
-
-
-wordsFromNumber(10000000)
+wordsFromNumber(1111111)
