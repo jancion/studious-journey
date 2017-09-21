@@ -5,6 +5,7 @@ CPTR-215-A
 fgrep
 '''
 
+filename = ['test', 'testies']
 
 import sys
 
