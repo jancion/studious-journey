@@ -1,27 +1,28 @@
-# 5c-gui-play.py
-# Robert Ordóñez & CPTR-215
-# 2017-09-25 just a window
-
+'''
+HelloGui.py
+Julian Ancion && Robert Ordonez
+2017-09-28
+'''
 from tkinter import *
 
 
-def HelloGUI(*args):
+def GreetingBox(*args):
     if nameVar.get() == "Zac Thomas":
         greetingVar.set("Stop touching my stuff.")
     else:
-        greetingVar.set("Hello, " + nameVar.get())
+        greetingVar.set("Howdy, " + nameVar.get())
     print(args)
 
 
 window = Tk()
-Label(window, text="What's your name?").pack()
+Label(window, text="Enter Your name: ").pack()
 nameVar = StringVar()
 nameEntry = Entry(window, textvariable=nameVar)
 nameEntry.pack()
-Button(window, text="Greet me!", command=HelloGUI).pack()
+Button(window, text="DO IT", command=GreetingBox).pack()
 greetingVar = StringVar()
 Label(window, textvariable=greetingVar).pack()
 
 nameEntry.focus()
-window.bind("<Return>", HelloGUI)
+window.bind("<Return>", GreetingBox)
 window.mainloop()
