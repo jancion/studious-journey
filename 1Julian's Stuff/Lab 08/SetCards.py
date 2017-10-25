@@ -268,11 +268,11 @@ for number in (1, 2, 3):
         for shape in "DOS":
             for fill in (0, 1, 2):
                 deck += [SetCard(number, color, shape, fill)]
-card4 = card1.find_third_card(card2)
+card4 = card1.find_third_card(card3)
 if card1.makes_set_with(card2, card3):
     print("That's a set!")
 else:
     print("Not a set!")
 
 print(card4)
-card3.drawcard()
+card4.drawcard()
