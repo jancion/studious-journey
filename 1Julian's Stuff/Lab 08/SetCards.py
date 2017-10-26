@@ -6,10 +6,15 @@ CPTR-215-A
 SetCards.py
 
 '''
-
+from turtle import *
 
 class SetCard:
     '''Creates the card class objects'''
+    NUMBERS = tuple('123')
+    COLORS = tuple("RGB")
+    SHAPES = tuple("SCT")
+    FILLS = tuple('FES')
+
     def __init__(self, number, color, shape, fill):
         # number in (1, 2, 3)
         # color in "RGP"
@@ -65,7 +70,8 @@ class SetCard:
         #print('SetCard(' + num + ',', + shape + ',', + )
         return SetCard(num, color, shape, fill)
 
-
+    def draw_card(self):
+        pass
 
 
     def makes_set_with(self, card2, card3):
@@ -97,13 +103,16 @@ card2 = SetCard('2', 'R', 'C', 'E')
 card3 = SetCard('1', 'R', 'T', 'S')
 
 
+def set_deck():
 
-deck = []
-for number in (1, 2, 3):
-    for color in "RGP":
-        for shape in "DOS":
-            for fill in (0, 1, 2):
-                deck += [SetCard(number, color, shape, fill)]
+    deck = []
+    for number in SetCard.NUMBERS:
+        for color in SetCard.COLORS:
+            for shape in SetCard.SHAPES:
+                for fill in SetCard.FILLS:
+                    deck += [SetCard(number, color, shape, fill)]
+    return deck
+
 card4 = card1.find_third_card(card2)
 if card1.makes_set_with(card2, card3):
     print("That's a set!")

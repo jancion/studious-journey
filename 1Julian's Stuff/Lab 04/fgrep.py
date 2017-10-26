@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/root/Downloads/Python-3.7.0a1/python
 '''
 Julian Ancion & Prof. Ordonez
 CPTR-215-A
@@ -38,7 +38,6 @@ def fgrep():
             fileStream.close()
     else:
         string = sys.argv[1]
-        #print('Searching for:', string)
         for fileName in sys.argv[2:]:
             fileStream = open(fileName, "r")
             for line in fileStream:
