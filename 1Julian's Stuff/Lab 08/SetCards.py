@@ -6,15 +6,10 @@ CPTR-215-A
 SetCards.py
 
 '''
-from turtle import *
+import turtle
 
 class SetCard:
     '''Creates the card class objects'''
-    NUMBERS = tuple('123')
-    COLORS = tuple("RGB")
-    SHAPES = tuple("SCT")
-    FILLS = tuple('FES')
-
     def __init__(self, number, color, shape, fill):
         # number in (1, 2, 3)
         # color in "RGP"
@@ -25,7 +20,171 @@ class SetCard:
         self.shape = shape
         self.fill = fill
 
+    def drawcard(self):
+        '''
+        draws card using turtle graphics
+        :return:
+        '''
+        colordict= {
+            'R':'Red',
+            'B':'Blue',
+            'G':'Green'
+        }
+        smart = turtle.Turtle()
+        smart.speed(0)
+        smart.hideturtle()
+        for i in range(int(self.number)):
 
+            if self.shape == 'S':
+                if self.fill == 'F':
+                    smart.begin_fill()
+                smart.down()
+                smart.color(colordict[self.color])
+                # Loop 4 times. Everything I want to repeat is
+                # *indented* by four spaces.
+                for i in range(4):
+                    smart.forward(50)
+                    smart.right(90)
+
+                # This isn't indented, so we aren't repeating it.
+
+                if self.fill == 'S':
+                    smart.forward(10)
+                    for i in range(2):
+                        smart.right(90)
+                        smart.forward(50)
+                        smart.left(90)
+                        smart.forward(10)
+                        smart.left(90)
+                        smart.forward(50)
+                        smart.right(90)
+                        smart.forward(10)
+                    smart.up()
+                    smart.forward(50)
+                smart.up()
+                if self.fill == 'F':
+                    smart.end_fill()
+                    smart.forward(100)
+
+            if self.shape == 'T':
+                if self.fill == 'F':
+                    smart.begin_fill()
+                smart.down()
+                smart.color(colordict[self.color])
+                # Loop 4 times. Everything I want to repeat is
+                # *indented* by four spaces.
+                for i in range(3):
+                    smart.right(120)
+                    smart.forward(50)
+
+
+                # This isn't indented, so we aren't repeating it.
+
+                if self.fill == 'S':
+                    smart.right(120)
+                    smart.forward(40)
+                    smart.right(120)
+                    smart.forward(40)
+                    smart.right(120)
+                    smart.forward(10)
+                    smart.right(60)
+                    smart.forward(30)
+                    smart.left(120)
+                    smart.forward(10)
+                    smart.left(60)
+                    smart.forward(20)
+                    smart.right(120)
+                    smart.forward(10)
+                    smart.right(60)
+                    smart.forward(10)
+                    smart.left(120)
+                    smart.forward(10)
+                    smart.right(60)
+                    smart.up()
+                    smart.forward(75)
+
+                smart.up()
+                if self.fill == 'F':
+                    smart.end_fill()
+                    smart.forward(75)
+
+            if self.shape == 'C':
+                if self.fill == 'F':
+                    smart.begin_fill()
+                smart.down()
+                smart.color(colordict[self.color])
+                # Loop 4 times. Everything I want to repeat is
+                # *indented* by four spaces.
+                for i in range(60):
+                    smart.forward(4)
+                    smart.right(6)
+
+                # This isn't indented, so we aren't repeating it.
+
+                if self.fill == 'S':
+                    for i in range(15):
+                        smart.forward(4)
+                        smart.right(6)
+                    smart.right(90)
+                    smart.forward(76)
+                    smart.left(90)
+                    smart.up()
+                    smart.forward(10)
+                    smart.left(90)
+                    smart.forward(1)
+                    smart.down()
+                    smart.forward(74)
+                    smart.up()
+                    smart.right(90)
+                    smart.forward(10)
+                    smart.right(90)
+                    smart.forward(4)
+                    smart.down()
+                    smart.forward(68)
+                    smart.left(90)
+                    smart.up()
+                    smart.forward(10)
+                    smart.left(90)
+                    smart.forward(9)
+                    smart.down()
+                    smart.forward(54)
+                    smart.up()
+                    smart.forward(11)
+                    smart.left(90)
+                    smart.forward(40)
+                    smart.left(90)
+                    smart.forward(2)
+                    smart.down()
+                    smart.forward(74)
+                    smart.up()
+                    smart.right(90)
+                    smart.forward(10)
+                    smart.right(90)
+                    smart.forward(6)
+                    smart.down()
+                    smart.forward(62)
+                    smart.left(90)
+                    smart.up()
+                    smart.forward(10)
+                    smart.left(90)
+                    smart.forward(12)
+                    smart.down()
+                    smart.forward(42)
+                    smart.up()
+                    smart.right(90)
+                    smart.forward(6)
+                    smart.right(90)
+                smart.up()
+                smart.forward(125)
+
+
+                #smart.forward(50)
+                smart.up()
+                if self.fill == 'F':
+                    smart.end_fill()
+
+
+        turtle.done()
     def find_third_card(self, card2):
         '''
         Checks the self card againts a second card to determine the third card and then outputs the third card into the SetCard method
@@ -70,8 +229,7 @@ class SetCard:
         #print('SetCard(' + num + ',', + shape + ',', + )
         return SetCard(num, color, shape, fill)
 
-    def draw_card(self):
-        pass
+
 
 
     def makes_set_with(self, card2, card3):
@@ -98,25 +256,23 @@ def all_same_or_different(thing1, thing2, thing3):
            (thing1 != thing2 and thing2 != thing3 and thing3 != thing1)
 
 
-card1 = SetCard('3', 'R', 'S', 'F')
-card2 = SetCard('2', 'R', 'C', 'E')
-card3 = SetCard('1', 'R', 'T', 'S')
+card1 = SetCard('3', 'G', 'C', 'S')
+card2 = SetCard('3', 'R', 'T', 'F')
+card3 = SetCard('3', 'B', 'S', 'E')
 
 
-def set_deck():
 
-    deck = []
-    for number in SetCard.NUMBERS:
-        for color in SetCard.COLORS:
-            for shape in SetCard.SHAPES:
-                for fill in SetCard.FILLS:
-                    deck += [SetCard(number, color, shape, fill)]
-    return deck
-
-card4 = card1.find_third_card(card2)
+deck = []
+for number in (1, 2, 3):
+    for color in "RGP":
+        for shape in "DOS":
+            for fill in (0, 1, 2):
+                deck += [SetCard(number, color, shape, fill)]
+card4 = card1.find_third_card(card3)
 if card1.makes_set_with(card2, card3):
     print("That's a set!")
 else:
     print("Not a set!")
 
 print(card4)
+card4.drawcard()

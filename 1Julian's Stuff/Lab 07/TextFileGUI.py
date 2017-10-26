@@ -30,7 +30,7 @@ def readfile(*args):
         chars += len(line)
         words += len(line.split())
     # Enable to work on other computers/files
-    chars += lines
+    # chars += lines
     lines = "Lines:", str(lines)
     words = "Words:", str(words)
     chars = "Characters:", str(chars)
