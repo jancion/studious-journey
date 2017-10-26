@@ -4,17 +4,12 @@ Prof. Ordonez
 CPTR-215-A
 10/19/2017
 SetCards.py
-
 '''
 import turtle
 
 class SetCard:
     '''Creates the card class objects'''
     def __init__(self, number, color, shape, fill):
-        # number in (1, 2, 3)
-        # color in "RGP"
-        # shape in "DOS"
-        # fill in (0, 1, 2) (empty, striped, solid)
         self.number = number
         self.color = color
         self.shape = shape
@@ -40,13 +35,9 @@ class SetCard:
                     smart.begin_fill()
                 smart.down()
                 smart.color(colordict[self.color])
-                # Loop 4 times. Everything I want to repeat is
-                # *indented* by four spaces.
                 for i in range(4):
                     smart.forward(50)
                     smart.right(90)
-
-                # This isn't indented, so we aren't repeating it.
 
                 if self.fill == 'S':
                     smart.forward(10)
@@ -71,14 +62,9 @@ class SetCard:
                     smart.begin_fill()
                 smart.down()
                 smart.color(colordict[self.color])
-                # Loop 4 times. Everything I want to repeat is
-                # *indented* by four spaces.
                 for i in range(3):
                     smart.right(120)
                     smart.forward(50)
-
-
-                # This isn't indented, so we aren't repeating it.
 
                 if self.fill == 'S':
                     smart.right(120)
@@ -113,13 +99,9 @@ class SetCard:
                     smart.begin_fill()
                 smart.down()
                 smart.color(colordict[self.color])
-                # Loop 4 times. Everything I want to repeat is
-                # *indented* by four spaces.
                 for i in range(60):
                     smart.forward(4)
                     smart.right(6)
-
-                # This isn't indented, so we aren't repeating it.
 
                 if self.fill == 'S':
                     for i in range(15):
@@ -177,9 +159,6 @@ class SetCard:
                 smart.up()
                 smart.forward(125)
 
-
-                #smart.forward(50)
-                smart.up()
                 if self.fill == 'F':
                     smart.end_fill()
 
