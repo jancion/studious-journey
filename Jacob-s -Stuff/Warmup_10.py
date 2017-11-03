@@ -1,3 +1,10 @@
+'''
+Jacob Knecht
+Prof. Ordonez
+CPTR-215
+11/02/17
+WarmUp 10
+'''
 class Fraction:
     def __init__(self, *args):
         if len(args) == 0:
@@ -153,8 +160,7 @@ class Fraction:
         >>> Fraction(-8,-12) < Fraction(6, -3)
         False
         '''
-        newSelf, newOther = self.common_denom(other)
-        return newSelf < newOther
+        return not self > other and not self == other
 
     def __ge__(self, other):
         '''
