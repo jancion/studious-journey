@@ -107,13 +107,38 @@ class BaseballCounter:
             string = 'rd'
         else:
             string = 'th'
-        first = "%d balls, %d strikes, %d out," % (self.ball.current_value, self.strike.current_value,
-                                                   self.outs.current_value)
-        second = "%s of the %d$s inning," % (self.top_bot, self.inning.current_value, string)
-        third = " score: %s:%s" % (self.home_score, self.away_score)
 
-        return first, second, third
-
+        return "%d balls, %d strikes, %d out, %s of the %d%s inning, score: %s:%s" % (self.ball.current_value,
+                                                                                      self.strike.current_value,
+                                                                                      self.outs.current_value,
+                                                                                      self.top_bot,
+                                                                                      self.inning.current_value,
+                                                                                      string, self.home_score,
+                                                                                      self.away_score)
+        def hit():
+            pass
+        def strikeup():
+            pass
+        def ballup():
+            pass
+        def runup():
+            pass
+        def change_sides():
+            pass
+        def get_balls():
+            pass
+        def get_strikes():
+            pass
+        def get_outs():
+            pass
+        def get_half():
+            pass
+        def get_inning():
+            pass
+        def get_score():
+            pass
+        def reset_all():
+            pass
 
 if __name__ == "__main__":
     pass
