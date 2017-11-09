@@ -32,6 +32,13 @@ class List:
     def __sub__(self, other):
         return "Don't call us, we won't call you!"
 
+    def all_even(self):
+        return "Don't call us, we won't call you!"
+
+    def all_odd(self):
+        return "Don't call us, we won't call you!"
+
+
 
 
 
@@ -69,6 +76,12 @@ class Empty(List):
     def __sub__(self, other):
         return self
 
+    def all_even(self):
+        return True
+
+    def all_odd(self):
+        return True
+
 
 class Node(List):
     def __init__(self, number, rest_of_list):
@@ -103,7 +116,7 @@ class Node(List):
         if self.data < self.rest.min():
             return self.data
         else:
-            self.rest.min()
+            return self.rest.min()
 
     def __len__(self):
         return 1 + len(self.rest)
@@ -111,12 +124,25 @@ class Node(List):
     def __contains__(self, item):
         return item == self.data or item in self.rest
 
+    def all_even(self):
+        if self.data % 2 == 0:
+            return self.rest.all_even()
+        else:
+            return False
+
+    def all_odd(self):
+        if self.data % 2 != 0:
+            return self.rest.all_odd()
+        else:
+            return False
 
 if __name__ == "__main__":
-    list2 = Node(3, Node(5, Empty()))
-    list4 = Node(1, Node(2, list2))
+    list2 = Node(1, Node(4, Empty()))
+    list4 = Node(5, Node(9, list2))
+    list2 = Node(1, Node(4, list4))
     print(10 in list2)  # list2.__contains__(10)
     print(5 in list2)  # list2.__contains__(5)
     print(list4.min())
     print(list2 + list4)
     print(list4 - 5)
+    print(list2.all_even())
