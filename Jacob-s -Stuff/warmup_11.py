@@ -20,6 +20,16 @@ class List:
     def __contains__(self, item):
         return "Don't call us, we won't call you!"
 
+    def __add__(self, other):
+        return "Don't call us, we won't call you!"
+
+    def max(self):
+        return "Don't call us, we won't call you!"
+
+    def min(self):
+        return "Don't call us, we won't call you!"
+
+
 
 class Empty(List):
     def __init__(self):
@@ -34,11 +44,23 @@ class Empty(List):
     def sum(self):
         return 0
 
+    def __add__(self, other):
+        if type(other) == int:
+            return Node(other, Empty())
+        else:
+            return other
+
     def __len__(self):
         return 0
 
     def __contains__(self, item):
         return False
+
+    def max(self):
+        return float("-inf")
+
+    def min(self):
+        return float("inf")
 
 
 class Node(List):
@@ -55,6 +77,21 @@ class Node(List):
     def sum(self):
         return self.data + self.rest.sum()
 
+    def __add__(self, other):
+        return Node(self.data, self.rest + other)
+
+    def max(self):
+        if self.data > self.rest.max():
+            return self.data
+        else:
+            return self.rest.max()
+
+    def min(self):
+        if self.data < self.rest.min():
+            return self.data
+        else:
+            self.rest.min()
+
     def __len__(self):
         return 1 + len(self.rest)
 
@@ -67,3 +104,5 @@ if __name__ == "__main__":
     list4 = Node(1, Node(2, list2))
     print(10 in list2)  # list2.__contains__(10)
     print(5 in list2)  # list2.__contains__(5)
+    print(list4.min())
+    print(list2 + list4)
