@@ -29,6 +29,10 @@ class List:
     def min(self):
         return "Don't call us, we won't call you!"
 
+    def __sub__(self, other):
+        return "Don't call us, we won't call you!"
+
+
 
 
 class Empty(List):
@@ -62,6 +66,9 @@ class Empty(List):
     def min(self):
         return float("inf")
 
+    def __sub__(self, other):
+        return self
+
 
 class Node(List):
     def __init__(self, number, rest_of_list):
@@ -79,6 +86,12 @@ class Node(List):
 
     def __add__(self, other):
         return Node(self.data, self.rest + other)
+
+    def __sub__(self, other):
+        if other == self.data:
+            return self.rest
+        else:
+            return Node(self.data, self.rest - other)
 
     def max(self):
         if self.data > self.rest.max():
@@ -106,3 +119,4 @@ if __name__ == "__main__":
     print(5 in list2)  # list2.__contains__(5)
     print(list4.min())
     print(list2 + list4)
+    print(list4 - 5)
