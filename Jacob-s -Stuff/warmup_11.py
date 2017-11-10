@@ -98,6 +98,20 @@ class Node(List):
         return self.data + self.rest.sum()
 
     def __add__(self, other):
+        '''Returns a new list with other appended to the end of self
+        >>> Empty() + Empty()
+        Empty()
+        >>> Node(1, Node(2, Empty())) + Empty()
+        Node(1, Node(2, Empty()))
+        >>> Node(1, Node(2, Empty())) + Node(3, Empty())
+        Node(1, Node(2, Node(3, Empty())))
+        >>> Node(1, Node(2, Empty())) + 5
+        Node(1, Node(2, Node(5, Empty())))
+        >>> Empty() + 3
+        Node(3, Empty())
+        >>> Empty() + Node(3, Node(5, Empty()))
+        Node(3, Node(5, Empty()))
+        '''
         return Node(self.data, self.rest + other)
 
     def __sub__(self, other):
