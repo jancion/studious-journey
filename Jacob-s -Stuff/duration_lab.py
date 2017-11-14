@@ -5,7 +5,7 @@ CPTR-215
 11/02/17
 Duration Lab 09
 '''
-class duration:
+class Duration:
     def __init__(self, *args):
         self.seconds = 0
         self.minutes = 0
@@ -38,18 +38,20 @@ class duration:
                     else:
                         self.seconds = args[0]
                 else:
-                    print('right way')
                     hours_list = args[0].split('h')
                     minutes_list = hours_list[1].split('m')
                     seconds_list = minutes_list[1].split('s')
-                    self.hours = hours_list[0][:-1]
-                    self.minutes = minutes_list[0][:-1]
-                    self.seconds = seconds_list[0][:-1]
+                    self.hours = hours_list[0]
+                    #print(self.hours)
+                    self.minutes = minutes_list[0]
+                    #print(self.minutes)
+                    self.seconds = seconds_list[0]
+                    #print(self.seconds)
 
     def __repr__(self):
-        return "Duration(%d, %d, %d)" % (self.hours, self.minutes, self.seconds)
+        return "Duration(%s, %s, %s)" % (str(self.hours), str(self.minutes), str(self.seconds))
 
     def __str__(self):
-        return "Duration(%s:%s:%s)" % (self.hours, self.minutes, self.seconds)
+        return "Duration(%s:%s:%s)" % (str(self.hours), str(self.minutes), str(self.seconds))
 
 duration('8h23m47s')
