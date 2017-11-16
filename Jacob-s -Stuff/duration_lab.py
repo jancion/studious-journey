@@ -64,4 +64,7 @@ class Duration:
             return "Duration(%s:%s:%s)" % (str(self.hours), str(self.minutes), str(self.seconds))
 
 
-Duration('8h23m47s')
+if __name__ == "__main__":
+
+    print(Duration('8h23m47s'))
+
