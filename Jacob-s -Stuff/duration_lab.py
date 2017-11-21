@@ -72,8 +72,11 @@ class Duration:
         '''
         return Duration(self.convert_to_seconds() * int(other))
 
+    def __sub__(self, other):
+        return Duration(self.convert_to_seconds() - int(other.convert_to_seconds()))
+
     def convert_to_seconds(self):
-        return int(self.hours * 3600 + self.minutes * 60 + self.seconds)
+        return int(self.hours) * 3600 + int(self.minutes) * 60 + int(self.seconds)
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
