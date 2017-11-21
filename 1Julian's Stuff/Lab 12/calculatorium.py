@@ -46,7 +46,6 @@ class CalculatorGuts:
                 self.pending_operator = button
                 self.start_new_number = True
 
-
         pass
 
     def buttons_pressed(self, buttons):
