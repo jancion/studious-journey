@@ -47,9 +47,9 @@ class Question(Knowledge):
     def play(self):
         new_answer1 = input(self.question + " Answer with a Y or N. ")
         if new_answer1 == "Y":
-            return Question(self.question, self.yes.play(), self.no)
+            return self.yes.play()
         else:
-            return Question(self.question, self.yes, self.no.play())
+            return self.no.play()
 
 if __name__ == "__main__":
     kb = Nothing()
