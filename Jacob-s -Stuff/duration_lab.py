@@ -12,6 +12,7 @@ class Duration:
         self.seconds = 0
         self.minutes = 0
         self.hours = 0
+        self.all_zero = False
         if len(args) == 0:
             print('Please enter a time argument.')
         elif len(args) == 3 and type(args[0]) == int:
@@ -29,6 +30,17 @@ class Duration:
                     if self.minutes > 60:
                         self.hours = self.minutes // 60
                         self.minutes = self.minutes % 60
+                elif self.seconds < -60:
+                    self.minutes = -self.seconds // 60
+                    self.minutes = -self.minutes
+                    self.seconds = -self.seconds % 60
+                    if self.minutes < -60:
+                        self.hours = -self.minutes // 60
+                        self.hours = -self.hours
+                        self.minutes = -self.minutes % 60
+                elif self.seconds == 0:
+                    self.seconds, self.minutes, self.hours = str(self.seconds).zfill(2), str(self.minutes).zfill(2), str(self.hours).zfill(2)
+                    self.all_zero = True
             elif type(args[0]) == str:
                 if ':' in args[0]:
                     print('Track3')
@@ -67,13 +79,13 @@ class Duration:
 
     def __repr__(self):
         # return "Duration(%s, %s, %s)" % (str(self.hours), str(self.minutes), str(self.seconds))
-        if self.seconds == 0:
+        if self.seconds == 0 or self.all_zero == True:
             return "Duration(%s:%s)" % (str(self.hours), str(self.minutes))
         else:
             return "Duration(%s:%s:%s)" % (str(self.hours), str(self.minutes), str(self.seconds))
 
     def __str__(self):
-        if self.seconds == 0:
+        if self.seconds == 0 or self.all_zero == True:
             return "Duration(%s:%s)" % (str(self.hours), str(self.minutes))
         else:
             return "Duration(%s:%s:%s)" % (str(self.hours), str(self.minutes), str(self.seconds))
@@ -96,6 +108,7 @@ class Duration:
         return int(self.hours) * 3600 + int(self.minutes) * 60 + int(self.seconds)
 
 
+
 if __name__ == "__main__":
     import doctest
 
@@ -107,3 +120,4 @@ if __name__ == "__main__":
     print(sec45 - min90)
     print(Duration('1m'))
     print(sec45 + Duration('1m'))
+    print(sec45 - sec45)
