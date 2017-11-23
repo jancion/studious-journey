@@ -1,12 +1,10 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 
 
 class Knowledge(ABC):
-    @abstractmethod
     def play(self):
         pass
 
-    @abstractmethod
     def learn(self):
         pass
 
@@ -16,8 +14,7 @@ class Nothing(Knowledge):
         return self.learn()
 
     def learn(self):
-        new_thing = input("What were you thinking of?")
-        print("Yay, I learned something new!")
+        new_thing = input("What were you thinking of? ")
         return Answer(new_thing)
 
 class Answer(Knowledge):
@@ -25,18 +22,21 @@ class Answer(Knowledge):
         self.answer = answer
 
     def play(self):
-        y_or_n = input("Were you thinking of %s (enter only Y or N)?" % self.answer)
+        y_or_n = input("Were you thinking of %s (enter only Y or N)? " % self.answer)
         if y_or_n == "Y":
             print("Aren't I smart?")
             return self
         else:
-            return self.learn
+            return self.learn()
 
     def learn(self):
-        new_answer = input("What were you thinking of?")
+        new_answer = input("What were you thinking of? ")
         new_question = input("What's a yes/no question I can use to distinguish between %s and %s? " % (self.answer, new_answer))
-        #ask for correct y/n, then use some if magic, self is yes branch, Answer is no branch
-        return Question(new_question, self, Answer(new_answer))
+        connect_Q2A = input("When I ask %s, does it belong to %s? (Answer with Y or N) " % (new_question, new_answer))
+        if connect_Q2A == 'Y':
+            return Question(new_question, Answer(new_answer), self)
+        else:
+            return Question(new_question, self, Answer(new_answer))
 
 class Question(Knowledge):
     def __init__(self, question, yes, no):
@@ -45,13 +45,11 @@ class Question(Knowledge):
         self.no = no
 
     def play(self):
-        new_answer = input(self.question + "Answer with a Y or N.")
-        if new_answer == "Y":
-            new_answer2 = input()
-
-
-    def learn(self):
-        pass
+        new_answer1 = input(self.question + " Answer with a Y or N. ")
+        if new_answer1 == "Y":
+            return self.yes.play()
+        else:
+            return self.no.play()
 
 if __name__ == "__main__":
     kb = Nothing()
