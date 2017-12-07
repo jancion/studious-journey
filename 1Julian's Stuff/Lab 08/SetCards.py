@@ -162,13 +162,20 @@ class SetCard:
                 if self.fill == 'F':
                     smart.end_fill()
 
-
         turtle.done()
+
     def find_third_card(self, card2):
         '''
         Checks the self card againts a second card to determine the third card and then outputs the third card into the SetCard method
         :param card2:
         :return:
+        >>> card1 = SetCard('3', 'G', 'C', 'S')
+        >>> card2 = SetCard('3', 'R', 'T', 'F')
+        >>> card3 = SetCard('3', 'G', 'S', 'S')
+        >>> card1.find_third_card(card2)
+        SetCard(3, 'B', 'S', 'E')
+        >>> card1.find_third_card(card3)
+        SetCard(3, 'G', 'T', 'S')
         '''
         num = '123'
         color = 'RGB'
@@ -217,6 +224,14 @@ class SetCard:
         :param card2:
         :param card3:
         :return:
+        >>> card1 = SetCard('3', 'G', 'C', 'S')
+        >>> card2 = SetCard('3', 'R', 'T', 'F')
+        >>> card3 = SetCard('3', 'B', 'S', 'E')
+        >>> card1.makes_set_with(card2, card3)
+        True
+        >>> card1 = SetCard('3', 'G', 'C', 'E')
+        >>> card1.makes_set_with(card2, card3)
+        False
         '''
         return all_same_or_different(self.number, card2.number, card3.number) and \
                all_same_or_different(self.color, card2.color, card3.color) and \
@@ -227,14 +242,37 @@ class SetCard:
         return "%s%s%s%s" % (self.number, self.color, self.shape, self.fill)
 
     def __repr__(self):
-        return "SetCard(%s, '%s', '%s', %s)" % (self.number, self.color, self.shape, self.fill)
+        return "SetCard(%s, '%s', '%s', '%s')" % (self.number, self.color, self.shape, self.fill)
 
 
 def all_same_or_different(thing1, thing2, thing3):
+    '''
+    Checks if three cards or items are the same or different
+    :param thing1: Card1 or item1
+    :param thing2: Card2 or item2
+    :param thing3: Card3 or item3
+    :return: Boolean
+    >>> card1 = SetCard('3', 'G', 'C', 'S')
+    >>> card2 = SetCard('3', 'R', 'T', 'F')
+    >>> card3 = SetCard('3', 'B', 'S', 'E')
+    >>> all_same_or_different(card1, card2, card3)
+    False
+    >>> card1 = SetCard('3', 'G', 'T', 'S')
+    >>> card2 = SetCard('3', 'G', 'T', 'S')
+    >>> card3 = SetCard('3', 'B', 'T', 'S')
+    >>> all_same_or_different(card1, card2, card3)
+    True
+
+    '''
     return (thing1 == thing2 and thing2 == thing3) or \
            (thing1 != thing2 and thing2 != thing3 and thing3 != thing1)
 
 
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+
+'''
 card1 = SetCard('3', 'G', 'C', 'S')
 card2 = SetCard('3', 'R', 'T', 'F')
 card3 = SetCard('3', 'B', 'S', 'E')
@@ -255,3 +293,4 @@ else:
 
 print(card4)
 card4.drawcard()
+'''

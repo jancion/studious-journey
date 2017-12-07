@@ -4,7 +4,7 @@ Prof. Ordonez
 CPTR-215
 11/08/2017
 Bounded Counter
-Contains four different classes involving different coutners
+Contains four different classes involving different counters
 '''
 class BoundedCounter:
     '''

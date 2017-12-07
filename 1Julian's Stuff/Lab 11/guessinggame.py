@@ -58,6 +58,7 @@ class Question(Knowledge):
         else:
             return self.no.play()
 
+
 if __name__ == "__main__":
     kb = Nothing()
     while True:

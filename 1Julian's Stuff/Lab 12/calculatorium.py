@@ -4,21 +4,12 @@ from tkinter import *
 
 class CalculatorGuts:
     '''
-    >>> calc = CalculatorGuts()
-    >>> calc.get_display()
-    '0.'
-    >>> calc.button_pressed('3')
-    >>> calc.get_display()
-    '3.'
-    >>> calc.buttons_pressed('2 + 3 - 8 C 4 =')
-    >>> calc.get_display()
-    '31.'
     '''
 
     def __init__(self, *args):
         self.left_operand = '0'
         self.pending_operator = ''
-        self.display = '0.'
+        self.display = '0'
         self.start_new_number = True
         self.decimal_flag = False
         self.num_list = '0123456789.'
@@ -133,6 +124,8 @@ class CalculatorGuts:
         self.decimal_check()
 
     def get_display(self):
+        if '..' in self.display:
+            self.display = self.display.replace('..', '.')
         return self.display
 
 
