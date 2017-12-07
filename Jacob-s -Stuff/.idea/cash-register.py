@@ -1,13 +1,17 @@
-"""
-Point of Sale system
-Jacob Knecht & CPTR-215
-2017-11-29 initial implementation of CashRegister, Inventory, and Product classes
-"""
+'''
+Julian Ancion
+Robert Ordóñez & CPTR-215
+CPTR-215
+Cash Register
+'''
 
 from random import randint
 
 class CashRegister:
     def __init__(self):
+        '''
+        initializes the cash register
+        '''
         self.scanner = Scanner()
         self.inventory = Inventory()
 
@@ -144,7 +148,7 @@ class Product:
 
 
 if __name__ == "__main__":
-   # import doctest
+    #import doctest
     #doctest.testmod()
 
     cash_register = CashRegister()
