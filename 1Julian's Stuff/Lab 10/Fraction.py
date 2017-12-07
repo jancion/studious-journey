@@ -286,7 +286,7 @@ if __name__ == "__main__":
     fracZero = Fraction()
     fracOne = Fraction(1)
     fracHalf = Fraction(1, 2)
-    fracTwoThirds = Fraction("0/3")
+    fracTwoThirds = Fraction("1/3")
     fracThreeSixths = Fraction(3, 6)
     frac45hundredths = Fraction(0.45)
     print("%s + %s = %s" % (fracHalf, fracTwoThirds, fracHalf + fracTwoThirds))

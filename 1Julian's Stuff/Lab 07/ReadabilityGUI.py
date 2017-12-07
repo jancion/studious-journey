@@ -30,7 +30,7 @@ def readfile(*args):
     '''
     window.file = filedialog.askopenfile(initialdir="/", title="Select file",
                                               filetypes=(("text files", "*.txt"), ("all files", "*.*")))
-    lines = words = chars = letters = syllables = sentences =  paragraphs =0
+    lines = words = chars = letters = syllables = sentences =  paragraphs = complex = 0
     for line in window.file:
         lines += 1
         for i in line:
@@ -45,12 +45,15 @@ def readfile(*args):
         word_list = line.split(" ")
         for i in word_list:
             syllables += syllable_count(i)
+            if syllable_count(i) > 3 and i[-2:] != 'ed' and i[-2:] != 'es' and i[-3] != 'ing':
+                complex += 1
         if word_list[-1] == '\n':
             paragraphs += 1
     # Enable to work on other computers/files
     avg_word = letters / words
     avg_sentence = words / sentences
     avg_syllable = syllables / words
+    gfi = .4((words / sentences) + 100 (complex / words))
 
     print(letters)
     print(syllables)
@@ -59,7 +62,8 @@ def readfile(*args):
     print(avg_word)
     print(avg_sentence)
     print(paragraphs)
-
+    print(complex)
+    print(gfi)
 
 
 

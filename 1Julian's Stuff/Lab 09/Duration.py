@@ -21,12 +21,6 @@ class Duration:
             self.seconds = args[0]
             self.minutes = 0
             self.hours = 0
-            if self.seconds > 60:
-                self.minutes = self.seconds // 60
-                self.seconds = self.seconds % 60
-                if self.minutes > 60:
-                    self.hours = self.minutes // 60
-                    self.minutes = self.minutes % 60
         elif len(args) == 3:
             self.hours = args[0]
             self.minutes = args[1]
@@ -49,11 +43,16 @@ class Duration:
                 self.hours = data1[0]
                 self.minutes = data2[0]
                 self.seconds = data2[1].strip('s')
-
         else:
             self.seconds = 0
             self.minutes = 0
             self.hours = 0
+        if int(self.seconds) >= 60:
+            self.minutes = self.minutes + self.seconds // 60
+            self.seconds = self.seconds % 60
+        if int(self.minutes) >= 60:
+            self.hours = self.hours + self.minutes // 60
+            self.minutes = self.minutes % 60
 
     def __repr__(self):
         return "Duration(%s:%s:%s)" % (self.hours, self.minutes, self.seconds)
@@ -61,12 +60,89 @@ class Duration:
     def __str__(self):
         return "Duration(%s:%s:%s)" % (self.hours, self.minutes, self.seconds)
 
+    def __add__(self, other):
+        pass
 
-test = Duration(60001)
-test2 = Duration(1, 2, 3)
-test3 = Duration('1:2:3')
-test4 = Duration('3h2m1s')
-print(test)
-print(test2)
-print(test3)
-print(test4)
+    def __sub__(self, other):
+        pass
+
+    def __eq__(self, other):
+        true_count = 0
+        if self.hours == other.hours:
+            true_count += 1
+        if self.minutes == other.minutes:
+            true_count += 1
+        if self.seconds == other.seconds:
+            true_count += 1
+        if true_count == 3:
+            return True
+        else:
+            return False
+
+    def __gt__(self, other):
+        true_count = 0
+        if int(self.hours > other.hours:
+            true_count += 1
+        if int(self.minutes > int(other.minutes:
+            true_count += 1
+        if int(self.seconds > int(other.seconds:
+            true_count += 1
+        if true_count == 3:
+            return True
+        else:
+            return False
+
+    def __ge__(self, other):
+        true_count = 0
+        if int(self.hours) >= int(other.hours):
+            true_count += 1
+        if int(self.minutes) >= int(other.minutes):
+            true_count += 1
+        if int(self.seconds) >= int(other.seconds):
+            true_count += 1
+        if true_count == 3:
+            return True
+        else:
+            return False
+
+    def __lt__(self, other):
+        true_count = 0
+        if int(self.hours) < int(other.hours):
+            true_count += 1
+        if int(self.minutes) < int(other.minutes):
+            true_count += 1
+        if int(self.seconds) < int(other.seconds):
+            true_count += 1
+        if true_count == 3:
+            return True
+        else:
+            return False
+
+    def __le__(self, other):
+        true_count = 0
+        if self.hours <= other.hours:
+            true_count += 1
+        if self.minutes <= other.minutes:
+            true_count += 1
+        if self.seconds <= other.seconds:
+            true_count += 1
+        if true_count == 3:
+            return True
+        else:
+            return False
+
+
+dur_almost_1_day = Duration(23, 59, 59)
+dur_90_min = Duration("1:30")
+dur_45_sec = Duration("0h0m45s")
+dur_1_min = Duration(60)
+dur_60_sec = Duration(0, 0, 60)
+
+if dur_1_min == dur_60_sec:
+    print(True)
+if dur_1_min > dur_45_sec:
+    print(False)
+print(dur_almost_1_day)
+print(dur_90_min)
+print(dur_45_sec)
+print(dur_1_min)
