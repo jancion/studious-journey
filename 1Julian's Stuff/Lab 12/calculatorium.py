@@ -1,6 +1,3 @@
-import math
-from tkinter import *
-
 
 class CalculatorGuts:
     '''
@@ -35,6 +32,7 @@ class CalculatorGuts:
             self.operator_pressed(button)
         elif button == self.inverse_list:
             self.inverse()
+        self.get_display()
 
 
     def number_pressed(self, button):
@@ -60,44 +58,42 @@ class CalculatorGuts:
                 self.pending_operator = button
         else:
             # after operand is assigned
-            if button == "="
-                self.evaluate(button)
+            if button == "=":
+                self.evaluate()
             else:
                 self.left_operand = self.display
                 self.pending_operator = button
                 self.start_new_number = True
                 self.decimal_flag = False
+        self.get_display()
 
 
-    def evaluate(self, button):
-        if button == "+":
+    def evaluate(self):
+        if self.pending_operator == "+":
             self.add()
-        if button == "-":
+        if self.pending_operator == "-":
             self.sub()
-        if button == "*":
+        if self.pending_operator == "*":
             self.multiply()
-        if button == "/":
+        if self.pending_operator == "/":
             self.division()
 
     def add(self):
-        self.display = float(self.left_operand) + float(self.display)
+        self.display = str(float(self.left_operand) + float(self.display))
 
     def sub(self):
-        self.display = float(self.left_operand) - float(self.display)
+        self.display = str(float(self.left_operand) - float(self.display))
 
     def multiply(self):
-        self.display = float(self.left_operand) * float(self.display)
+        self.display = str(float(self.left_operand) * float(self.display))
 
     def division(self):
-        self.display = float(self.left_operand) / float(self.display)
+        self.display = str(float(self.left_operand) / float(self.display))
 
     def inverse(self):
         self.display = str(-(float(self.display)))
         if self.display[-1] == 0:
             self.display = self.display[:-1]
-    def buttons_pressed(self, buttons):
-        for button in buttons:
-            self.button_pressed(button)
 
     def decimal_check(self):
         if self.decimal_flag == False:
@@ -108,10 +104,13 @@ class CalculatorGuts:
             self.get_display()
 
     def get_display(self):
-        return self.display
+        if self.display[-1] == 0:
+            self.display = self.display[:-1]
+        #return self.display
+        print(self.display)
 
 calc = CalculatorGuts()
 calc.button_pressed('6')
+calc.button_pressed('+')
 calc.button_pressed('8')
-calc.button_pressed('.')
-calc.button_pressed('9')
+calc.button_pressed('=')
