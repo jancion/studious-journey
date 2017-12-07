@@ -15,6 +15,7 @@ class CalculatorGuts:
         self.operator_list = '+-*/='
         self.inverse_list = '$'
         self.clear_list = 'c'
+        self.part_clear = 'ce'
 
     def __repr__(self):
         return "%s" % (self.display)
@@ -28,6 +29,8 @@ class CalculatorGuts:
             self.inverse()
         elif button == self.clear_list:
             self.clear()
+        elif button == self.part_clear:
+            self.partial_clear()
 
     def number_pressed(self, button):
         if button == '.':
@@ -93,7 +96,10 @@ class CalculatorGuts:
         self.decimal_check()
 
     def division(self):
-        self.display = float(self.left_operand) / float(self.display)
+        if self.left_operand == 0 or self.display == 0:
+            self.display = 0
+        else:
+            self.display = float(self.left_operand) / float(self.display)
         self.decimal_check()
 
     def inverse(self):
@@ -106,39 +112,57 @@ class CalculatorGuts:
                 self.display = '-' + self.display
 
     def decimal_check(self):
-        if '.' in self.display:
+        if '.' in str(self.display):
             print(self.get_display())
         else:
-            self.display += '.'
+            self.display = str(self.display) + '.'
             print(self.get_display())
             self.display = self.display[:-1]
-
 
     def clear(self):
         self.left_operand = '0'
         self.pending_operator = ''
-        self.display = '0.'
+        self.display = '0'
+        self.start_new_number = True
+        self.decimal_flag = False
+        self.decimal_check()
+
+    def partial_clear(self):
+        self.display = '0'
         self.start_new_number = True
         self.decimal_flag = False
         self.decimal_check()
 
     def get_display(self):
-        if '..' in self.display:
+        if '..' in str(self.display):
             self.display = self.display.replace('..', '.')
         return self.display
 
-class CalcGUI:
-    def __init__(self):
-        self.displayLabel = Label()
-        self.displayLabel.grid(row = 0, column = 4)
-        self.Button1
-
-
     def draw(self):
+        window = Tk()
+        displayLabel = Label(window, textvariable=self.display)
+        displayLabel.grid(row=0, column=4)
+        Button(window, text=" AC  ", command=self.button_pressed('c')).grid(row=1, column=0)
+        Button(window, text=" CE  ", command=self.button_pressed('ce')).grid(row=1, column=1)
+        Button(window, text=" +/- ", command=self.button_pressed('$')).grid(row=1, column=2)
+        Button(window, text="  ÷  ", command=self.button_pressed('/')).grid(row=2, column=0)
+        Button(window, text="  7  ", command=self.button_pressed('7')).grid(row=2, column=0)
+        Button(window, text="  8  ", command=self.button_pressed('8')).grid(row=2, column=1)
+        Button(window, text="  9  ", command=self.button_pressed('9')).grid(row=2, column=2)
+        Button(window, text="  x  ", command=self.button_pressed('*')).grid(row=2, column=3)
+        Button(window, text="  4  ", command=self.button_pressed('4')).grid(row=3, column=0)
+        Button(window, text="  5  ", command=self.button_pressed('5')).grid(row=3, column=1)
+        Button(window, text="  6  ", command=self.button_pressed('6')).grid(row=3, column=2)
+        Button(window, text="  -  ", command=self.button_pressed('-')).grid(row=3, column=3)
+        Button(window, text="  1  ", command=self.button_pressed('1')).grid(row=4, column=0)
+        Button(window, text="  2  ", command=self.button_pressed('2')).grid(row=4, column=1)
+        Button(window, text="  3  ", command=self.button_pressed('3')).grid(row=4, column=2)
+        Button(window, text="  +  ", command=self.button_pressed('+')).grid(row=4, column=3)
+        Button(window, text="  0  ", command=self.button_pressed('0')).grid(row=5, column=0, rowspan=2)
+        Button(window, text="  .  ", command=self.button_pressed('.')).grid(row=5, column=2)
+        Button(window, text="  =  ", command=self.button_pressed('=')).grid(row=5, column=3)
 
 
-calc = CalculatorGuts()
-calc.button_pressed('6')
-calc.button_pressed('8')
-calc.button_pressed('.')
-calc.button_pressed('9')
+if __name__ == "__main__":
+    test = CalculatorGuts()
+    test.draw()
