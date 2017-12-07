@@ -3,7 +3,7 @@ Julian Ancion
 Prof. Ordonez
 CPTR-215
 11/02/17
-Duration Lab 09
+Duration
 '''
 
 
@@ -81,11 +81,11 @@ class Duration:
 
     def __gt__(self, other):
         true_count = 0
-        if int(self.hours > other.hours:
+        if int(self.hours > int(other.hours)):
             true_count += 1
-        if int(self.minutes > int(other.minutes:
+        if int(self.minutes > int(other.minutes)):
             true_count += 1
-        if int(self.seconds > int(other.seconds:
+        if int(self.seconds > int(other.seconds)):
             true_count += 1
         if true_count == 3:
             return True
