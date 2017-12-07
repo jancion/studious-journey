@@ -19,10 +19,8 @@ class Duration:
             self.seconds = int(args[2])
             self.minutes = int(args[1])
             self.hours = int(args[0])
-            print('Track1')
         elif len(args) == 1:
             if type(args[0]) == int:
-                print('Track2')
                 self.seconds = int(args[0])
                 if self.seconds > 60:
                     self.minutes = self.seconds // 60
@@ -43,24 +41,18 @@ class Duration:
                     self.all_zero = True
             elif type(args[0]) == str:
                 if ':' in args[0]:
-                    print('Track3')
                     time_list = args[0].split(':')
                     if len(time_list) == 2:
-                        print('Track3.1')
                         self.hours = int(time_list[0])
                         self.minutes = int(time_list[1])
                     elif len(time_list) == 3:
-                        print('Track3.2')
                         self.hours = int(time_list[0])
                         self.minutes = int(time_list[1])
                         self.seconds = int(time_list[2])
                     else:
-                        print('Track3.3')
                         self.seconds = int(args[0])
                 elif len(args[0]) >= 6:
-                    print('Track4')
                     hours_list = args[0].split('h')
-                    print(hours_list)
                     minutes_list = hours_list[1].split('m')
                     seconds_list = minutes_list[1].split('s')
                     self.hours = hours_list[0]

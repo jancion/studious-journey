@@ -1,7 +1,6 @@
 """
 Point of Sale system
-Robert Ordóñez & CPTR-215
-2017-11-27 UML class diagram
+Jacob Knecht & CPTR-215
 2017-11-29 initial implementation of CashRegister, Inventory, and Product classes
 """
 
@@ -145,8 +144,8 @@ class Product:
 
 
 if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+   # import doctest
+    #doctest.testmod()
 
     cash_register = CashRegister()
     done = False
