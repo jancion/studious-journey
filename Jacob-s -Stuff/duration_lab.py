@@ -107,6 +107,20 @@ class Duration:
     def convert_to_seconds(self):
         return int(self.hours) * 3600 + int(self.minutes) * 60 + int(self.seconds)
 
+    def __gt__(self, other):
+        return self.convert_to_seconds() > int(other.convert_to_seconds())
+
+    def __lt__(self, other):
+        return self.convert_to_seconds() < int(other.convert_to_seconds())
+
+    def __ge__(self, other):
+        return self.convert_to_seconds() > int(other.convert_to_seconds()) or self.convert_to_seconds() == int(other.convert_to_seconds())
+
+    def __le__(self, other):
+        return self.convert_to_seconds() < int(other.convert_to_seconds()) or self.convert_to_seconds() == int(other.convert_to_seconds())
+
+
+
 
 
 if __name__ == "__main__":
@@ -121,3 +135,4 @@ if __name__ == "__main__":
     print(Duration('1m'))
     print(sec45 + Duration('1m'))
     print(sec45 - sec45)
+    print(sec45 >= sec45)

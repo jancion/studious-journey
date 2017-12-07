@@ -1,3 +1,10 @@
+'''
+Jacob Knecht
+Prof. Ordonez
+CPTR-215
+10/26/17
+SetCards Lab 08
+'''
 from random import shuffle
 class SetCard:
     '''Creates the cards and class'''
