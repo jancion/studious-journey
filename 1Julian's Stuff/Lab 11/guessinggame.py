@@ -1,3 +1,10 @@
+'''
+Jacob Knecht
+Prof. Ordonez
+CPTR-215
+11/16/17
+Guessing Game Lab 11
+'''
 from abc import ABC
 
 
