@@ -54,9 +54,10 @@ class Question(Knowledge):
     def play(self):
         new_answer1 = input(self.question + " Answer with a Y or N. ")
         if new_answer1 == "Y":
-            return self.yes.play()
+            return Question(self.question, self.yes.play(), self.no)
         else:
-            return self.no.play()
+            return Question(self.question, self.yes, self.no.play())
+
 
 
 if __name__ == "__main__":

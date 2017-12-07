@@ -1,4 +1,3 @@
-import math
 from tkinter import *
 
 
@@ -127,6 +126,15 @@ class CalculatorGuts:
         if '..' in self.display:
             self.display = self.display.replace('..', '.')
         return self.display
+
+class CalcGUI:
+    def __init__(self):
+        self.displayLabel = Label()
+        self.displayLabel.grid(row = 0, column = 4)
+        self.Button1
+
+
+    def draw(self):
 
 
 calc = CalculatorGuts()
