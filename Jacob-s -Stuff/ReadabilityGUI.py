@@ -84,7 +84,7 @@ def readability():
                6: "Sixth grade"}
     fog = 0.4*((wordCounter.get() / sentCounter.get()) + 100*(complexCounter.get() / wordCounter.get()))
     print(fog)
-    fogStr.set('This book has a reading level of a/an ' + fogdict[math.floor(fog)] + ' with a score of ' + str(round(fog, 2)))
+    fogStr.set('This book has a reading level of a/an ' + fogdict[math.floor(int(fog))] + ' with a score of ' + str(round(fog, 2)))
     Label(window, text="Gunning fog index").pack()
     Label(window, textvariable=fogStr).pack()
 

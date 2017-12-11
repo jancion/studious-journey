@@ -1,14 +1,17 @@
-"""
-Point of Sale system
+'''
+Julian Ancion
 Robert Ordóñez & CPTR-215
-2017-11-27 UML class diagram
-2017-11-29 initial implementation of CashRegister, Inventory, and Product classes
-"""
+CPTR-215
+Cash Register
+'''
 
 from random import randint
 
 class CashRegister:
     def __init__(self):
+        '''
+        initializes the cash register
+        '''
         self.scanner = Scanner()
         self.inventory = Inventory()
 
@@ -145,8 +148,8 @@ class Product:
 
 
 if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+    #import doctest
+    #doctest.testmod()
 
     cash_register = CashRegister()
     done = False
