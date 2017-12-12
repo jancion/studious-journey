@@ -30,7 +30,7 @@ class Answer(Knowledge):
 
     def play(self):
         y_or_n = input("Were you thinking of %s (enter only Y or N)? " % self.answer)
-        if y_or_n == "Y":
+        if y_or_n.upper() == "Y":
             print("Aren't I smart?")
             return self
         else:
@@ -40,7 +40,7 @@ class Answer(Knowledge):
         new_answer = input("What were you thinking of? ")
         new_question = input("What's a yes/no question I can use to distinguish between %s and %s? " % (self.answer, new_answer))
         connect_Q2A = input("When I ask %s, does it belong to %s? (Answer with Y or N) " % (new_question, new_answer))
-        if connect_Q2A == 'Y':
+        if connect_Q2A.upper() == 'Y':
             return Question(new_question, Answer(new_answer), self)
         else:
             return Question(new_question, self, Answer(new_answer))
@@ -53,7 +53,7 @@ class Question(Knowledge):
 
     def play(self):
         new_answer1 = input(self.question + " Answer with a Y or N. ")
-        if new_answer1 == "Y":
+        if new_answer1.upper() == "Y":
             return Question(self.question, self.yes.play(), self.no)
         else:
             return Question(self.question, self.yes, self.no.play())

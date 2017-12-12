@@ -24,7 +24,7 @@ class CashRegister:
         total = 0.0
         while True:
             id = self.scanner.scan_item()
-            if id == "DONE":
+            if id.upper() == "DONE":
                 break
             product = self.inventory.product_from_id(id)
             price = product.get_price()

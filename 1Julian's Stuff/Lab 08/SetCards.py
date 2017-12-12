@@ -256,7 +256,7 @@ def all_same_or_different(thing1, thing2, thing3):
     >>> card2 = SetCard('3', 'R', 'T', 'F')
     >>> card3 = SetCard('3', 'B', 'S', 'E')
     >>> all_same_or_different(card1, card2, card3)
-    False
+    True
     >>> card1 = SetCard('3', 'G', 'T', 'S')
     >>> card2 = SetCard('3', 'G', 'T', 'S')
     >>> card3 = SetCard('3', 'B', 'T', 'S')
@@ -272,7 +272,6 @@ if __name__ == "__main__":
     import doctest
     doctest.testmod()
 
-'''
 card1 = SetCard('3', 'G', 'C', 'S')
 card2 = SetCard('3', 'R', 'T', 'F')
 card3 = SetCard('3', 'B', 'S', 'E')
@@ -292,5 +291,5 @@ else:
     print("Not a set!")
 
 print(card4)
-card4.drawcard()
-'''
+card1.drawcard()
+

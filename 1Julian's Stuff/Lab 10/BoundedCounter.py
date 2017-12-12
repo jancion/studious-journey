@@ -444,7 +444,7 @@ if __name__ == "__main__":
 
     time = DigitalClock()
     print(time)
-    time.tick()
+    time.tick(600)
     print(time)
 
     score = BaseballCounter()
