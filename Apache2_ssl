@@ -1,0 +1,21 @@
+#!/bin/bash
+#Create Self Signed cert for lorge peen usage
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
+
+apt-get update -y
+apt-get dist-upgrade -y
+apt-get install apache2 openssl -y
+mkdir -p /etc/pki/tls/certs
+cd /etc/pki/tls/certs
+echo -e 'US\nTennessee\nCollegedale\nSouthern Adventist University\nSchool of Computing\nwww.example.com\njknecht@southern.edu\n' | openssl req -x509 -nodes -newkey rsa:2048 -keyout example.com.key -out example.com.crt
+a2enmod ssl
+ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/000-default-ssl.conf
+systemctl restart apache2
+sed -i.bak s@'/etc/ssl/certs/ssl-cert-snakeoil.pem'@'/etc/pki/tls/certs/example.com.crt'@g /etc/apache2/sites-enabled/000-default-ssl.conf
+sed -i.bak s@'/etc/ssl/private/ssl-cert-snakeoil.key'@'/etc/pki/tls/certs/example.com.key'@g /etc/apache2/sites-enabled/000-default-ssl.conf
+systemctl restart apache2  
+
